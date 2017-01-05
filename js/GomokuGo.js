@@ -68,16 +68,16 @@ function gomokuGo() {
     var u = 0;              // 电脑预落子的x位置
     var v = 0;              // 电脑预落子的y位置
     var myScore = [];       // 玩家的分数
-    var gomukuScore = [];   // 电脑的分数
+    var gomokuScore = [];   // 电脑的分数
     var max = 0;            // 最优位置的分数
 
     // 初始化分数的二维数组
     for (var i = 0; i < 15; i++) {
         myScore[i] = [];
-        gomukuScore[i] = [];
+        gomokuScore[i] = [];
         for (var j = 0; j < 15; j++) {
             myScore[i][j] = 0;
-            gomukuScore[i][j] = 0;
+            gomokuScore[i][j] = 0;
         }
     }
 
@@ -97,13 +97,13 @@ function gomokuGo() {
                             myScore[i][j] += 10000;
                         }
                         if (gomokuWin[k] == 1) {
-                            gomukuScore[i][j] += 220;
+                            gomokuScore[i][j] += 220;
                         } else if (gomokuWin[k] == 2) {
-                            gomukuScore[i][j] += 420;
+                            gomokuScore[i][j] += 420;
                         } else if (gomokuWin[k] == 3) {
-                            gomukuScore[i][j] += 2100;
+                            gomokuScore[i][j] += 2100;
                         } else if (gomokuWin[k] == 4) {
-                            gomukuScore[i][j] += 20000;
+                            gomokuScore[i][j] += 20000;
                         }
                     }
                 }
@@ -115,18 +115,18 @@ function gomokuGo() {
                     v = j;
                 } else if (myScore[i][j] == max) {
                     // 如果玩家(i,j)处和目前最优分数一样大，则比较电脑在该位置和预落子的位置的分数
-                    if (gomukuScore[i][j] > gomukuScore[u][v]) {
+                    if (gomokuScore[i][j] > gomokuScore[u][v]) {
                         u = i;
                         v = j;
                     }
                 }
                 
                 // 如果电脑(i,j)处比目前最优的分数大，则落子在(i,j)处
-                if (gomukuScore[i][j] > max) {
-                    max  = gomukuScore[i][j];
+                if (gomokuScore[i][j] > max) {
+                    max  = gomokuScore[i][j];
                     u = i;
                     v = j;
-                } else if (gomukuScore[i][j] == max) {
+                } else if (gomokuScore[i][j] == max) {
                     // 如果电脑(i,j)处和目前最优分数一样大，则比较玩家在该位置和预落子的位置的分数
                     if (myScore[i][j] > myScore[u][v]) {
                         u = i;
